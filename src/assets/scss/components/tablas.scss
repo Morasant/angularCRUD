@@ -1,0 +1,14 @@
+table{
+  tbody{
+    th, tr{
+      cursor: pointer;
+      &:hover {
+        background-color: lightgrey;
+      }
+      &.selected {
+        color: white !important;
+        background-color: $venus !important;
+      }
+    }
+  }
+}

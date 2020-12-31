@@ -1,0 +1,126 @@
+<div
+  id="modal-usuario"
+  class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered"
+  role="document"
+>
+  <div *ngIf="usuario != undefined" class="modal-content">
+    <div class="modal-header">
+      <p class="header-title h3 mb-4" *ngIf="accion == 'usuario'">
+        Usuario
+      </p>
+      <p class="header-title h3 mb-4" *ngIf="accion == 'nuevoUsuario'">
+        Nuevo Usuario
+      </p>
+      <p class="header-title h3 mb-4" *ngIf="accion == 'editarUsuario'">
+        Editar Usuario
+      </p>
+      <button
+        aria-label="Close"
+        class="close"
+        data-dismiss="modal"
+        type="button"
+        (click)="onClose()"
+      >
+      <i class="fas fa-window-close"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="usuarioForm" class="form">
+        <div class="row">
+          <div class="col-12" *ngIf="accion == 'usuario'">
+            <div class="form-group">
+              <label>
+                ID:
+              </label>
+              <input
+                [attr.disabled]="(accion == 'usuario') ? 'disabled' : null "
+                type="text"
+                [(ngModel)]="usuario.id"
+                formControlName="id"
+                placeholder="ID"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label>
+                Nombre:
+              </label>
+              <input
+                [attr.disabled]="(accion == 'usuario') ? 'disabled' : null "
+                type="text"
+                [(ngModel)]="usuario.name"
+                formControlName="name"
+                placeholder="Nombre"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label>
+                E-mail:
+              </label>
+              <input
+                [attr.disabled]="(accion == 'usuario') ? 'disabled' : null "
+                type="email"
+                [(ngModel)]="usuario.email"
+                formControlName="email"
+                placeholder="E-mail"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label>
+                Género:
+              </label>
+              <input
+                [attr.disabled]="(accion == 'usuario') ? 'disabled' : null "
+                type="text"
+                [(ngModel)]="usuario.gender"
+                formControlName="gender"
+                placeholder="Género"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label>
+                Status:
+              </label>
+              <input
+                [attr.disabled]="(accion == 'usuario') ? 'disabled' : null "
+                type="text"
+                [(ngModel)]="usuario.status"
+                formControlName="status"
+                placeholder="Status"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="form-group text-center" *ngIf="accion == 'nuevoUsuario'">
+        <button
+          type="submit"
+          [disabled]="usuarioForm.invalid"
+          (click)="addUsuario(usuario)"
+          class="btn btn btn-outline-dark btn-sm"
+        >
+          <i class="far fa-save"></i> Guardar
+        </button>
+      </div>
+      <div class="form-group text-center" *ngIf="accion == 'editarUsuario'">
+        <button
+          type="submit"
+          [disabled]="usuarioForm.invalid"
+          (click)="editUsuario(usuario)"
+          class="btn btn btn-outline-dark btn-sm"
+        >
+          <i class="far fa-save"></i> Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

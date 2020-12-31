@@ -1,0 +1,53 @@
+<!-- <section id="buscadorComentarios">Formulario de búsqueda</section> -->
+<!-- <div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div id="load" *ngIf="!loading"> -->
+  <section id="listaComentarios">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="table-responsive">
+          <ngx-datatable
+            class="material"
+            [columnMode]="ColumnMode.force"
+            [loadingIndicator]="loading"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [scrollbarH]="true"
+            [rows]="rows"
+            [columns]="columns"
+            [externalPaging]="true"
+            [count]="pagina.total"
+            [offset]="pagina.page"
+            [limit]="pagina.limit"
+            (page)="setPage($event)"
+            >
+            <ngx-datatable-column name="#" prop="id">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Nombre" prop="name">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="E-mail" prop="email">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Comentario" prop="body">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- </div> -->

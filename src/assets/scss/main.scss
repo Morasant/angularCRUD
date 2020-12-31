@@ -1,0 +1,11 @@
+//Variables
+@import "variables.scss";
+
+//Componentes
+@import "components/tablas.scss";
+@import "components/botones.scss";
+
+//Material
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';

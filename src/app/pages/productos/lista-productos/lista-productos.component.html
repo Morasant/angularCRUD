@@ -1,0 +1,43 @@
+<!-- <section id="buscadorProductos">Formulario de búsqueda</section> -->
+<div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div id="load" *ngIf="!loading">
+  <section id="listaProductos">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!sinproductos">
+              <tr *ngFor="let producto of productos">
+                <th scope="row">{{producto.id}}</th>
+                <td>{{producto.name}}</td>
+                <td>{{producto.description}}</td>
+                <td>{{producto.image}}</td>
+                <td>{{producto.price}}</td>
+                <td>{{producto.status}}</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="sinproductos">
+              <tr>
+                <td colspan="dtOptions.columns.length" class="text-center">No hay datos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
