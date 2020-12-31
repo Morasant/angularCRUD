@@ -1,0 +1,68 @@
+<!-- <section id="buscadorUsuarios">Formulario de búsqueda</section> -->
+<section id="nuevoUsuario">
+  <button class="btn btn-outline-primary m-3" (click)="nuevoUsuario()"><i class="fas fa-user-plus"></i> Nuevo Usuario</button>
+  <button class="btn btn-outline-primary m-3" (click)="editarUsuario()"><i class="fas fa-user-edit"></i> Editar Usuario</button>
+  <button class="btn btn-outline-primary m-3" (click)="borrarUsuario()"><i class="fas fa-user-times"></i> Eliminar Usuario</button>
+</section>
+<div class="d-flex justify-content-center" *ngIf="loading">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div id="load" *ngIf="!loading">
+  <section id="listaUsuarios">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="table-responsive" *ngIf="!sinUsuarios">
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" *ngFor="let columna of columnas; let i = index">
+                  {{ columna }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let usuarios of listaUsuarios | paginate: {
+                    itemsPerPage: paginado.limit,
+                    currentPage: paginado.page,
+                    totalItems: paginado.total
+                  }"
+                (click)="seleccionarUsuario(usuarios.id)"
+                (dblclick)="mostrarDetalle()"
+                [ngClass]="(usuarios.id == datosSeleccionado.id) ? 'selected' : '' "
+                >
+                <th scope="row">{{ usuarios.id }}</th>
+                <td>{{ usuarios.name }}</td>
+                <td>{{ usuarios.email }}</td>
+                <td>{{ usuarios.gender }}</td>
+                <td>{{ usuarios.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between p-2">
+            <pagination-controls
+              previousLabel="Anterior"
+              nextLabel="Siguiente"
+              (pageChange)="controlarPagina($event)"
+              responsive="true"
+            >
+            </pagination-controls>
+          </div>
+        </div>
+
+        <app-modal-usuario class="modal fade" id="modal-usuario" tabindex="-1" role="dialog" aria-labelledby="modal-usuario" aria-hidden="true" [accion]="accion" [usuario]="datosSeleccionado"></app-modal-usuario>
+
+        <div class="row" *ngIf="sinUsuarios">
+          <div class="col-12">
+            <p class="mens text-danger">
+              <i class="fas fa-exclamation"></i> <span>No existen usuarios</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
